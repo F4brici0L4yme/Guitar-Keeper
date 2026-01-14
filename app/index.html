@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Triad Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Guitar Triad Visualizer</h1>
+        </header>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="root-note">Root Note</label>
+                <select id="root-note">
+                    <option value="C">C</option>
+                    <option value="C#">C#</option>
+                    <option value="D">D</option>
+                    <option value="D#">D#</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="F#">F#</option>
+                    <option value="G">G</option>
+                    <option value="G#">G#</option>
+                    <option value="A">A</option>
+                    <option value="A#">A#</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="chord-type">Chord Type</label>
+                <select id="chord-type">
+                    <option value="major">Major Triad</option>
+                    <option value="minor">Minor Triad</option>
+                    <option value="diminished">Diminished Triad</option>
+                    <option value="power">Power Chord (R-5-R)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="inversion">Inversion Filter</label>
+                <select id="inversion">
+                    <option value="all">Show All Positions</option>
+                    <option value="root">Root Position Only</option>
+                    <option value="first">1st Inversion Only</option>
+                    <option value="second">2nd Inversion Only</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="fretboard-container">
+            <canvas id="fretboard"></canvas>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
