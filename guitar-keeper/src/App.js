@@ -3,9 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 const DiagonalLines = () => {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      <div className="absolute w-1 h-[200%] bg-gradient-to-b from-transparent via-red-200 to-transparent transform rotate-45 -translate-x-1/2 left-1/4 top-0 opacity-30"></div>
-      <div className="absolute w-1 h-[200%] bg-gradient-to-b from-transparent via-yellow-200 to-transparent transform rotate-45 -translate-x-1/2 left-1/2 top-0 opacity-30"></div>
-      <div className="absolute w-1 h-[200%] bg-gradient-to-b from-transparent via-blue-200 to-transparent transform rotate-45 -translate-x-1/2 left-3/4 top-0 opacity-30"></div>
+      <div className="absolute w-0.5 h-[200%] bg-gradient-to-b from-transparent via-red-300 to-transparent transform rotate-45 -translate-x-1/2 left-[15%] top-0 opacity-40"></div>
+      <div className="absolute w-0.5 h-[200%] bg-gradient-to-b from-transparent via-orange-300 to-transparent transform rotate-45 -translate-x-1/2 left-[30%] top-0 opacity-40"></div>
+      <div className="absolute w-0.5 h-[200%] bg-gradient-to-b from-transparent via-yellow-300 to-transparent transform rotate-45 -translate-x-1/2 left-[45%] top-0 opacity-40"></div>
+      <div className="absolute w-0.5 h-[200%] bg-gradient-to-b from-transparent via-green-300 to-transparent transform rotate-45 -translate-x-1/2 left-[60%] top-0 opacity-40"></div>
+      <div className="absolute w-0.5 h-[200%] bg-gradient-to-b from-transparent via-blue-300 to-transparent transform rotate-45 -translate-x-1/2 left-[75%] top-0 opacity-40"></div>
+      <div className="absolute w-0.5 h-[200%] bg-gradient-to-b from-transparent via-purple-300 to-transparent transform rotate-45 -translate-x-1/2 left-[90%] top-0 opacity-40"></div>
     </div>
   );
 };
@@ -53,7 +56,7 @@ const FeatureSelector = ({ onSelect, onClose }) => {
           <button
             key={feature.id}
             onClick={() => onSelect(feature.id)}
-            className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 hover:bg-white hover:shadow-2xl transition-all group"
+            className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 hover:bg-white hover:shadow-2xl transition-all group border-2 border-gray-200 hover:border-gray-300"
           >
             <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center text-4xl font-light group-hover:bg-gray-200 transition-colors">
               {feature.icon}
@@ -95,12 +98,12 @@ const Fretboard = ({ highlightedNotes, title }) => {
   const canvasRef = useRef(null);
 
   const fretboardMap = [
-    ['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb'],
-    ['B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db'],
-    ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A'],
-    ['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E'],
-    ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
-    ['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb']
+    ['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G'],
+    ['B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D'],
+    ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
+    ['D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F'],
+    ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
+    ['E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G']
   ];
 
   useEffect(() => {
@@ -109,7 +112,7 @@ const Fretboard = ({ highlightedNotes, title }) => {
 
     const ctx = canvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
-    const width = 1000;
+    const width = 1100;
     const height = 350;
 
     canvas.width = width * dpr;
@@ -127,7 +130,7 @@ const Fretboard = ({ highlightedNotes, title }) => {
     const fretboardWidth = width - leftMargin - rightMargin;
     const fretboardHeight = height - topMargin - bottomMargin;
     const stringSpacing = fretboardHeight / 5;
-    const fretSpacing = fretboardWidth / 14;
+    const fretSpacing = fretboardWidth / 15;
 
     ctx.fillStyle = '#f5f5f5';
     ctx.fillRect(leftMargin, topMargin - 10, fretboardWidth, fretboardHeight + 20);
@@ -144,7 +147,7 @@ const Fretboard = ({ highlightedNotes, title }) => {
 
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 2;
-    for (let i = 0; i <= 14; i++) {
+    for (let i = 0; i <= 15; i++) {
       const x = leftMargin + i * fretSpacing;
       ctx.beginPath();
       ctx.moveTo(x, topMargin - 10);
@@ -152,7 +155,7 @@ const Fretboard = ({ highlightedNotes, title }) => {
       ctx.stroke();
     }
 
-    const fretMarkers = [3, 5, 7, 9, 12];
+    const fretMarkers = [3, 5, 7, 9, 12, 15];
     ctx.fillStyle = '#999';
     fretMarkers.forEach(fret => {
       const x = leftMargin + (fret - 0.5) * fretSpacing;
@@ -165,13 +168,13 @@ const Fretboard = ({ highlightedNotes, title }) => {
     ctx.fillStyle = '#666';
     ctx.font = '11px sans-serif';
     ctx.textAlign = 'center';
-    for (let i = 0; i <= 14; i++) {
+    for (let i = 0; i <= 15; i++) {
       const x = leftMargin + i * fretSpacing;
       ctx.fillText(i.toString(), x, topMargin + fretboardHeight + 30);
     }
 
     for (let string = 0; string < 6; string++) {
-      for (let fret = 0; fret <= 14; fret++) {
+      for (let fret = 0; fret <= 15; fret++) {
         const note = fretboardMap[string][fret];
         const highlight = highlightedNotes.find(h => h.note === note);
 
@@ -225,11 +228,16 @@ const TriadsView = ({ onBack }) => {
     }));
   };
 
+  const getTriadFormula = (root, type) => {
+    const triadNotes = getTriadNotes(root, type);
+    return triadNotes.map(n => n.note).join(' - ');
+  };
+
   const triadTypes = [
-    { id: 'major', label: 'Major', formula: 'C - E - G' },
-    { id: 'minor', label: 'Minor', formula: 'C - Eb - G' },
-    { id: 'augmented', label: 'Aug', formula: 'C - E - Ab' },
-    { id: 'diminished', label: 'Diminished', formula: 'C - Eb -Gb' }
+    { id: 'minor', label: 'Minor', color: 'bg-teal-100 text-teal-800 border-teal-200' },
+    { id: 'major', label: 'Major', color: 'bg-pink-100 text-pink-800 border-pink-200' },
+    { id: 'augmented', label: '7', color: 'bg-orange-100 text-orange-800 border-orange-200' },
+    { id: 'diminished', label: 'Diminished', color: 'bg-blue-100 text-blue-800 border-blue-200' }
   ];
 
   const highlightedNotes = getTriadNotes(rootNote, selectedType);
@@ -238,7 +246,10 @@ const TriadsView = ({ onBack }) => {
     <div className="min-h-screen p-8 relative">
       <DiagonalLines />
       <div className="relative z-10 max-w-6xl mx-auto">
-        <button onClick={onBack} className="mb-8 text-gray-600 hover:text-gray-800 flex items-center gap-2">
+        <button 
+          onClick={onBack} 
+          className="mb-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-all flex items-center gap-2 shadow-md"
+        >
           <span>←</span> Back
         </button>
 
@@ -258,14 +269,14 @@ const TriadsView = ({ onBack }) => {
             <button
               key={type.id}
               onClick={() => setSelectedType(type.id)}
-              className={`px-8 py-4 rounded-2xl font-medium transition-all ${
+              className={`px-8 py-4 rounded-2xl font-medium transition-all border-2 ${
                 selectedType === type.id
-                  ? 'bg-gray-800 text-white shadow-lg scale-105'
-                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                  ? 'bg-gray-800 text-white shadow-lg scale-105 border-gray-800'
+                  : `${type.color} border-2`
               }`}
             >
               <div className="text-lg">{type.label}</div>
-              <div className="text-sm opacity-75 mt-1">{type.formula}</div>
+              <div className="text-sm opacity-75 mt-1">{getTriadFormula(rootNote, type.id)}</div>
             </button>
           ))}
         </div>
@@ -274,7 +285,7 @@ const TriadsView = ({ onBack }) => {
   );
 };
 
-const ChordDiagram = ({ chord, barre }) => {
+const ChordDiagram = ({ positions, barreFret, rootNote, chordType }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -319,8 +330,19 @@ const ChordDiagram = ({ chord, barre }) => {
       ctx.stroke();
     }
 
+    if (barreFret) {
+      const y = margin + (barreFret - 0.5) * fretSpacing;
+      ctx.fillStyle = '#1f2937';
+      ctx.fillRect(margin, y - 4, gridWidth, 8);
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(barreFret.toString(), margin - 12, y);
+    }
+
     ctx.fillStyle = '#1f2937';
-    chord.positions.forEach((pos) => {
+    positions.forEach((pos) => {
       if (pos.fret > 0) {
         const x = margin + pos.string * stringSpacing;
         const y = margin + (pos.fret - 0.5) * fretSpacing;
@@ -333,35 +355,14 @@ const ChordDiagram = ({ chord, barre }) => {
     ctx.fillStyle = '#666';
     ctx.font = '14px sans-serif';
     ctx.textAlign = 'center';
-    chord.positions.forEach((pos) => {
+    positions.forEach((pos) => {
       const x = margin + pos.string * stringSpacing;
       if (pos.fret === 0) {
         ctx.fillText('o', x, margin - 8);
       }
     });
 
-    if (barre && chord.barrePositions) {
-      chord.barrePositions.forEach((pos) => {
-        const x = margin + pos.string * stringSpacing;
-        const y = margin + (pos.fret - 0.5) * fretSpacing;
-        ctx.beginPath();
-        ctx.arc(x, y, 8, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      if (chord.barreFret) {
-        const y = margin + (chord.barreFret - 0.5) * fretSpacing;
-        ctx.fillStyle = '#1f2937';
-        ctx.fillRect(margin, y - 4, gridWidth, 8);
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold 10px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(chord.barreFret.toString(), margin - 12, y);
-      }
-    }
-
-  }, [chord, barre]);
+  }, [positions, barreFret]);
 
   return <canvas ref={canvasRef} className="mx-auto" />;
 };
@@ -371,34 +372,127 @@ const ChordsLibrary = ({ onBack }) => {
   const [chordType, setChordType] = useState('major');
   const notes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 
-  const chordShapes = {
-    C: {
+  const getChordPositions = (root, type) => {
+    const rootIndex = notes.indexOf(root);
+    const baseShapes = {
       major: {
-        normal: { positions: [{string: 1, fret: 0}, {string: 2, fret: 1}, {string: 3, fret: 0}, {string: 4, fret: 2}, {string: 5, fret: 3}] },
-        barre: { positions: [], barrePositions: [{string: 1, fret: 3}, {string: 2, fret: 5}, {string: 3, fret: 5}, {string: 4, fret: 5}], barreFret: 3 }
+        normal: [
+          { string: 1, fret: 0 },
+          { string: 2, fret: 1 },
+          { string: 3, fret: 0 },
+          { string: 4, fret: 2 },
+          { string: 5, fret: 3 }
+        ],
+        barre: { fret: 3, positions: [
+          { string: 1, fret: 3 },
+          { string: 2, fret: 5 },
+          { string: 3, fret: 5 },
+          { string: 4, fret: 5 },
+          { string: 5, fret: 3 }
+        ]}
       },
       minor: {
-        normal: { positions: [{string: 1, fret: 0}, {string: 2, fret: 1}, {string: 3, fret: 0}, {string: 4, fret: 1}, {string: 5, fret: 3}] },
-        barre: { positions: [], barrePositions: [{string: 1, fret: 3}, {string: 2, fret: 4}, {string: 3, fret: 5}, {string: 4, fret: 5}], barreFret: 3 }
+        normal: [
+          { string: 1, fret: 0 },
+          { string: 2, fret: 1 },
+          { string: 3, fret: 0 },
+          { string: 4, fret: 1 },
+          { string: 5, fret: 3 }
+        ],
+        barre: { fret: 3, positions: [
+          { string: 1, fret: 3 },
+          { string: 2, fret: 4 },
+          { string: 3, fret: 5 },
+          { string: 4, fret: 5 },
+          { string: 5, fret: 3 }
+        ]}
+      },
+      '7': {
+        normal: [
+          { string: 1, fret: 0 },
+          { string: 2, fret: 1 },
+          { string: 3, fret: 3 },
+          { string: 4, fret: 2 },
+          { string: 5, fret: 3 }
+        ],
+        barre: { fret: 3, positions: [
+          { string: 1, fret: 3 },
+          { string: 2, fret: 5 },
+          { string: 3, fret: 5 },
+          { string: 4, fret: 4 },
+          { string: 5, fret: 3 }
+        ]}
+      },
+      maj7: {
+        normal: [
+          { string: 1, fret: 0 },
+          { string: 2, fret: 0 },
+          { string: 3, fret: 0 },
+          { string: 4, fret: 2 },
+          { string: 5, fret: 3 }
+        ],
+        barre: { fret: 3, positions: [
+          { string: 1, fret: 3 },
+          { string: 2, fret: 5 },
+          { string: 3, fret: 4 },
+          { string: 4, fret: 5 },
+          { string: 5, fret: 3 }
+        ]}
+      },
+      min7: {
+        normal: [
+          { string: 1, fret: 0 },
+          { string: 2, fret: 1 },
+          { string: 3, fret: 3 },
+          { string: 4, fret: 1 },
+          { string: 5, fret: 3 }
+        ],
+        barre: { fret: 3, positions: [
+          { string: 1, fret: 3 },
+          { string: 2, fret: 4 },
+          { string: 3, fret: 5 },
+          { string: 4, fret: 4 },
+          { string: 5, fret: 3 }
+        ]}
       }
-    }
+    };
+
+    const shift = rootIndex;
+    const shape = baseShapes[type];
+    
+    return {
+      normal: shape.normal.map(pos => ({
+        ...pos,
+        fret: pos.fret + shift
+      })),
+      barre: {
+        fret: shape.barre.fret + shift,
+        positions: shape.barre.positions.map(pos => ({
+          ...pos,
+          fret: pos.fret + shift
+        }))
+      }
+    };
   };
 
-  const currentChords = chordShapes[rootNote]?.[chordType] || chordShapes.C.major;
+  const chordPositions = getChordPositions(rootNote, chordType);
 
   const chordTypes = [
-    { id: 'minor', label: 'Minor' },
-    { id: 'major', label: 'Major' },
-    { id: '7', label: '7' },
-    { id: 'maj7', label: 'maj7' },
-    { id: 'min7', label: 'min7' }
+    { id: 'minor', label: 'Minor', color: 'bg-teal-100 text-teal-800 border-teal-200' },
+    { id: 'major', label: 'Major', color: 'bg-pink-100 text-pink-800 border-pink-200' },
+    { id: '7', label: '7', color: 'bg-orange-100 text-orange-800 border-orange-200' },
+    { id: 'maj7', label: 'maj7', color: 'bg-blue-100 text-blue-800 border-blue-200' },
+    { id: 'min7', label: 'min7', color: 'bg-yellow-100 text-yellow-800 border-yellow-200' }
   ];
 
   return (
     <div className="min-h-screen p-8 relative">
       <DiagonalLines />
       <div className="relative z-10 max-w-6xl mx-auto">
-        <button onClick={onBack} className="mb-8 text-gray-600 hover:text-gray-800 flex items-center gap-2">
+        <button 
+          onClick={onBack} 
+          className="mb-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-all flex items-center gap-2 shadow-md"
+        >
           <span>←</span> Back
         </button>
 
@@ -413,13 +507,23 @@ const ChordsLibrary = ({ onBack }) => {
           <div className="text-center">
             <h3 className="text-xl font-medium mb-4">{rootNote}</h3>
             <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <ChordDiagram chord={currentChords.normal} barre={false} />
+              <ChordDiagram 
+                positions={chordPositions.normal} 
+                barreFret={null}
+                rootNote={rootNote}
+                chordType={chordType}
+              />
             </div>
           </div>
           <div className="text-center">
             <h3 className="text-xl font-medium mb-4">{rootNote}</h3>
             <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <ChordDiagram chord={currentChords.barre} barre={true} />
+              <ChordDiagram 
+                positions={chordPositions.barre.positions} 
+                barreFret={chordPositions.barre.fret}
+                rootNote={rootNote}
+                chordType={chordType}
+              />
             </div>
           </div>
         </div>
@@ -433,16 +537,81 @@ const ChordsLibrary = ({ onBack }) => {
               <button
                 key={type.id}
                 onClick={() => setChordType(type.id)}
-                className={`px-8 py-3 rounded-full font-medium transition-all ${
+                className={`px-8 py-3 rounded-full font-medium transition-all border-2 ${
                   chordType === type.id
-                    ? 'bg-gray-800 text-white shadow-lg scale-105'
-                    : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                    ? 'bg-gray-800 text-white shadow-lg scale-105 border-gray-800'
+                    : `${type.color} border-2`
                 }`}
               >
                 {type.label}
               </button>
             ))}
           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ScalesView = ({ onBack }) => {
+  const [rootNote, setRootNote] = useState('G');
+  const notes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+  const getScaleNotes = (root, type) => {
+    const rootIndex = notes.indexOf(root);
+    let intervals = [];
+
+    switch (type) {
+      case 'pentatonic': intervals = [0, 2, 4, 7, 9]; break;
+      case 'major': intervals = [0, 2, 4, 5, 7, 9, 11]; break;
+      case 'minor-pentatonic': intervals = [0, 3, 5, 7, 10]; break;
+      case 'minor-pentatonic-b3': intervals = [0, 2, 3, 7, 10]; break;
+      case 'minor-pentatonic-b7': intervals = [0, 3, 5, 7, 9]; break;
+      default: intervals = [0, 2, 4, 7, 9];
+    }
+
+    return intervals.map((interval, index) => ({
+      note: notes[(rootIndex + interval) % 12],
+      isRoot: index === 0
+    }));
+  };
+
+  const scaleTypes = [
+    { id: 'pentatonic', label: 'Pentatonic Scale' },
+    { id: 'major', label: 'Major' },
+    { id: 'minor-pentatonic', label: 'Minor Pentatonic Scale' },
+    { id: 'minor-pentatonic-b3', label: 'Minor Pentatonic Scale from the b3' },
+    { id: 'minor-pentatonic-b7', label: 'Minor Pentatonic Scale from the b7' }
+  ];
+
+  return (
+    <div className="min-h-screen p-8 relative">
+      <DiagonalLines />
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <button 
+          onClick={onBack} 
+          className="mb-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-all flex items-center gap-2 shadow-md"
+        >
+          <span>←</span> Back
+        </button>
+
+        <NoteSelector
+          label="Root Note"
+          selected={rootNote}
+          onSelect={setRootNote}
+          notes={notes}
+        />
+
+        <div className="space-y-8 mt-12">
+          {scaleTypes.map((scale) => {
+            const scaleNotes = getScaleNotes(rootNote, scale.id);
+            return (
+              <div key={scale.id} className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                <h3 className="text-xl font-medium mb-4 text-center text-gray-800">{scale.label}</h3>
+                <Fretboard highlightedNotes={scaleNotes} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -567,7 +736,10 @@ const CircleOfFifths = ({ onBack }) => {
     <div className="min-h-screen p-8 relative">
       <DiagonalLines />
       <div className="relative z-10 max-w-4xl mx-auto">
-        <button onClick={onBack} className="mb-8 text-gray-600 hover:text-gray-800 flex items-center gap-2">
+        <button 
+          onClick={onBack} 
+          className="mb-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-all flex items-center gap-2 shadow-md"
+        >
           <span>←</span> Back
         </button>
 
@@ -643,6 +815,7 @@ export default function App() {
     <div className="min-h-screen bg-white">
       {screen === 'home' && <HomePage onExplore={() => setShowFeatures(true)} />}
       {screen === 'triads' && <TriadsView onBack={() => setScreen('home')} />}
+      {screen === 'scales' && <ScalesView onBack={() => setScreen('home')} />}
       {screen === 'chords' && <ChordsLibrary onBack={() => setScreen('home')} />}
       {screen === 'circle' && <CircleOfFifths onBack={() => setScreen('home')} />}
       
